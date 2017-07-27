@@ -2,12 +2,27 @@
 
 [toc]
 
-Questo è il client restful per la comunicazione con il server Sparkling18 SecQuick secondo
+Questo è il client Restful per la comunicazione con il server Sparkling18 SecQuick secondo
 le specifiche delle nuove API restful documentate in [API-Doc](http://sparkling18.com/api-docs/).
-Il presente progetto esponse le specifiche chiamate alle risorse distribuite su {base-path}/server
-Questo client comprende la parte di gestione della comunicazione crittografata e la relativa gestione delle chiavi.
+Questo client implementa la parte di gestione della comunicazione crittografata e la relativa gestione delle chiavi.
 
-Il sorgente presente in questo repository è pre impostato con gli endpoint per l'ambiente di test.
+Il presente progetto esponse le specifiche chiamate alle risorse distribuite su {base-path}/server
+Il sorgente presente in questo repository è pre impostato con il basePath per l'ambiente di test:
+
+https://api.test.sparkling18.com/v1/server
+
+Per modificare tale url basta instanziare una delle classi presenti sotto il package:
+
+```bash
+com.sparkling18.rest.client.server.api
+```
+
+e valorizzare il basePath desiderato utilizzando il seguente metodo:
+
+```bash
+public void setBasePath(String basePath)
+```
+
 
 
 ## Procedura scambio chiavi
