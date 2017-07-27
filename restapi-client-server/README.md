@@ -1,23 +1,14 @@
-# Sparkling18, Client restful PHP v1.0
+# Sparkling18, Client restful Java Server (Test)
 
 [toc]
 
-Questo � il client restful per la comunicazione con il server Sparkling18 SecQuick secondo
+Questo è il client restful per la comunicazione con il server Sparkling18 SecQuick secondo
 le specifiche delle nuove API restful documentate in [API-Doc](http://sparkling18.com/api-docs/).
+Il presente progetto esponse le specifiche chiamate alle risorse distribuite su {base-path}/server
 Questo client comprende la parte di gestione della comunicazione crittografata e la relativa gestione delle chiavi.
 
+Il sorgente presente in questo repository è pre impostato con gli endpoint per l'ambiente di test.
 
-Nel codice sorgente si fa riferimento a alle chiavi che vengono configurate nel file __/src/Config.php__. Accertarsi che i path siano riferiti correttamente.
-
-| | |
-|---------------------------|-----------------------|
-| main.1app8_rest_base_url| L'URL base dell'API restful (es api.test.sparkling18.com)|
-| main.1app8_rest_pci_base_url | L'url base dell'API restful per il servizio PCI (es. api.test.sparkling18.com/v1/server-pci) |
-| main.rest_public_server_key | Il path della chiave pubblica rilasciata dalla procedura di generazione di 1APP8 |
-| main.rest_private_key | Il path della chiave privata del cliente |
-| main.1app8_rest_key_id | ID della chiave rilasciata dalla procedura di generazione di 1APP8 |
-
-E' corredata da classi di test unitario in (PHPUnit) che fungono da esempio per l'utilizzo della libreria. Questi vanno eseguit dopo aver configurato correttamente il file **Config.php**.
 
 ## Procedura scambio chiavi
 
