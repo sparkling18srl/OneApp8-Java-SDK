@@ -12,9 +12,12 @@ import java.security.*;
 import com.sparkling18.rest.client.server.model.ResultListPayment;
 import com.sparkling18.rest.client.server.model.Error;
 import com.sparkling18.rest.client.server.model.Payment;
+import com.sparkling18.rest.client.server.model.TokenPayment;
+import com.sparkling18.rest.client.server.model.MobilePayment;
 import com.sparkling18.rest.client.server.model.WalletPayment;
 import com.sparkling18.rest.client.server.model.SettlementData;
 import com.sparkling18.rest.client.server.model.ResultListTransaction;
+
 
 import com.sun.jersey.multipart.FormDataMultiPart;
 import com.sun.jersey.multipart.file.FileDataBodyPart;
@@ -135,6 +138,106 @@ public class PaymentsApi {
       String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (ResultListPayment) ApiInvoker.deserialize(response, "", ResultListPayment.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      throw ex;
+    }
+  }
+  
+  /**
+   * Submit a TokenPayment Payment
+   * Initialize a transaction process and try to authorize with the Credit Card data binded with the specified token
+   * @param tokenPayment TokenPayment entity
+   * @return Payment
+   */
+  public Payment tokenPayment (TokenPayment tokenPayment) throws ApiException, SecurityException {
+    Object postBody = tokenPayment;
+    
+
+    // create path and map variables
+    String path = "/payments/token".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      FormDataMultiPart mp = new FormDataMultiPart();
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Payment) ApiInvoker.deserialize(response, "", Payment.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      throw ex;
+    }
+  }
+  
+  /**
+   * Create a Transaction Payment from order
+   * Create a transaction from order and username
+   * @param mobilePayment MobilePayment entity
+   * @return Payment
+   */
+  public Payment mobilePayment (MobilePayment mobilePayment) throws ApiException, SecurityException {
+    Object postBody = mobilePayment;
+    
+
+    // create path and map variables
+    String path = "/payments/wallet/mobile".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      FormDataMultiPart mp = new FormDataMultiPart();
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Payment) ApiInvoker.deserialize(response, "", Payment.class);
       }
       else {
         return null;
@@ -284,7 +387,7 @@ public class PaymentsApi {
     }
 
     try {
-      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return ;
       }

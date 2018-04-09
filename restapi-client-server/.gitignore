@@ -1,0 +1,16 @@
+*~
+.idea
+*.iml
+.checkstyle
+checkstyle-result.xml
+.classpath
+.factorypath
+.idea
+.project
+.settings
+.gradle
+*.versionsBackup
+*.xml.orig
+*.java.orig
+*.properties.orig
+target

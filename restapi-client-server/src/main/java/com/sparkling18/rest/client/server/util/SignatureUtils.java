@@ -9,7 +9,7 @@ import java.security.spec.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.codec.binary.*;
+import org.apache.commons.codec.binary.Base64;
 import javax.ws.rs.core.*;
 import com.sun.jersey.api.client.*;
 
