@@ -15,6 +15,7 @@ import com.sparkling18.rest.client.server.model.Payment;
 import com.sparkling18.rest.client.server.model.TokenPayment;
 import com.sparkling18.rest.client.server.model.MobilePayment;
 import com.sparkling18.rest.client.server.model.WalletPayment;
+import com.sparkling18.rest.client.server.model.RefundRequest;
 import com.sparkling18.rest.client.server.model.SettlementData;
 import com.sparkling18.rest.client.server.model.ResultListTransaction;
 
@@ -27,6 +28,7 @@ import javax.ws.rs.core.MediaType;
 import java.io.File;
 import java.util.Map;
 import java.util.HashMap;
+
 
 public class PaymentsApi {
   String basePath = "https://api.test.sparkling18.com/v1/server";
@@ -70,7 +72,7 @@ public class PaymentsApi {
     return basePath;
   }
 
-  
+
   /**
    * get a list of payments
    * Returns all payments
@@ -87,7 +89,7 @@ public class PaymentsApi {
    */
   public ResultListPayment getPaymentList (Long offset, Long pageSize, String orderOn, Boolean ascending, String externalId, Long registerId, Long storeId, Long merchantId, String merchantOrderId) throws ApiException, SecurityException {
     Object postBody = null;
-    
+
 
     // create path and map variables
     String path = "/payments".replaceAll("\\{format\\}","json");
@@ -115,10 +117,10 @@ public class PaymentsApi {
       queryParams.put("merchantId", ApiInvoker.parameterToString(merchantId));
     if (merchantOrderId != null)
       queryParams.put("merchantOrderId", ApiInvoker.parameterToString(merchantOrderId));
-    
-    
+
+
     String[] contentTypes = {
-      
+
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -126,12 +128,12 @@ public class PaymentsApi {
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
       FormDataMultiPart mp = new FormDataMultiPart();
-      
+
       if(hasFields)
         postBody = mp;
     }
     else {
-      
+
     }
 
     try {
@@ -146,7 +148,7 @@ public class PaymentsApi {
       throw ex;
     }
   }
-  
+
   /**
    * Submit a TokenPayment Payment
    * Initialize a transaction process and try to authorize with the Credit Card data binded with the specified token
@@ -155,7 +157,7 @@ public class PaymentsApi {
    */
   public Payment tokenPayment (TokenPayment tokenPayment) throws ApiException, SecurityException {
     Object postBody = tokenPayment;
-    
+
 
     // create path and map variables
     String path = "/payments/token".replaceAll("\\{format\\}","json");
@@ -165,10 +167,10 @@ public class PaymentsApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
-    
-    
+
+
     String[] contentTypes = {
-      
+
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -176,12 +178,12 @@ public class PaymentsApi {
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
       FormDataMultiPart mp = new FormDataMultiPart();
-      
+
       if(hasFields)
         postBody = mp;
     }
     else {
-      
+
     }
 
     try {
@@ -196,7 +198,7 @@ public class PaymentsApi {
       throw ex;
     }
   }
-  
+
   /**
    * Create a Transaction Payment from order
    * Create a transaction from order and username
@@ -205,7 +207,7 @@ public class PaymentsApi {
    */
   public Payment mobilePayment (MobilePayment mobilePayment) throws ApiException, SecurityException {
     Object postBody = mobilePayment;
-    
+
 
     // create path and map variables
     String path = "/payments/wallet/mobile".replaceAll("\\{format\\}","json");
@@ -215,10 +217,10 @@ public class PaymentsApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
-    
-    
+
+
     String[] contentTypes = {
-      
+
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -226,12 +228,12 @@ public class PaymentsApi {
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
       FormDataMultiPart mp = new FormDataMultiPart();
-      
+
       if(hasFields)
         postBody = mp;
     }
     else {
-      
+
     }
 
     try {
@@ -246,7 +248,7 @@ public class PaymentsApi {
       throw ex;
     }
   }
-  
+
   /**
    * Submit a Wallet Payment
    * Initialize a transaction process and try to authorize with the Credit Card data binded with the wallet ID
@@ -255,7 +257,7 @@ public class PaymentsApi {
    */
   public Payment walletPayment (WalletPayment walletPayment) throws ApiException, SecurityException {
     Object postBody = walletPayment;
-    
+
 
     // create path and map variables
     String path = "/payments/wallet/moto".replaceAll("\\{format\\}","json");
@@ -265,10 +267,10 @@ public class PaymentsApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
-    
-    
+
+
     String[] contentTypes = {
-      
+
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -276,12 +278,12 @@ public class PaymentsApi {
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
       FormDataMultiPart mp = new FormDataMultiPart();
-      
+
       if(hasFields)
         postBody = mp;
     }
     else {
-      
+
     }
 
     try {
@@ -296,7 +298,7 @@ public class PaymentsApi {
       throw ex;
     }
   }
-  
+
   /**
    * get a single payment
    * Returns one payment
@@ -305,21 +307,21 @@ public class PaymentsApi {
    */
   public Payment getPayment (Long id) throws ApiException, SecurityException {
     Object postBody = null;
-    
+
 
     // create path and map variables
     String path = "/payments/{id}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
+            .replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
-    
-    
+
+
     String[] contentTypes = {
-      
+
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -327,12 +329,12 @@ public class PaymentsApi {
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
       FormDataMultiPart mp = new FormDataMultiPart();
-      
+
       if(hasFields)
         postBody = mp;
     }
     else {
-      
+
     }
 
     try {
@@ -347,7 +349,7 @@ public class PaymentsApi {
       throw ex;
     }
   }
-  
+
   /**
    * cancel the whole payment
    * cancel the payment, including associated transactions
@@ -356,21 +358,21 @@ public class PaymentsApi {
    */
   public void cancel (Long id) throws ApiException, SecurityException {
     Object postBody = null;
-    
+
 
     // create path and map variables
     String path = "/payments/{id}/cancel".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
+            .replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
-    
-    
+
+
     String[] contentTypes = {
-      
+
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -378,12 +380,12 @@ public class PaymentsApi {
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
       FormDataMultiPart mp = new FormDataMultiPart();
-      
+
       if(hasFields)
         postBody = mp;
     }
     else {
-      
+
     }
 
     try {
@@ -398,7 +400,59 @@ public class PaymentsApi {
       throw ex;
     }
   }
-  
+
+  /**
+   * refund the whole or a partial payment
+   * refund the payment, including associated VAS transactions
+   * @param id entity id
+   * @param refundRequest RefundRequest entity
+   * @return Payment
+   */
+  public Payment refund (Long id, RefundRequest refundRequest) throws ApiException, SecurityException {
+    Object postBody = refundRequest;
+
+
+    // create path and map variables
+    String path = "/payments/{id}/refund".replaceAll("\\{format\\}","json")
+            .replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      FormDataMultiPart mp = new FormDataMultiPart();
+
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+
+    }
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Payment) ApiInvoker.deserialize(response, "", Payment.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      throw ex;
+    }
+  }
+
   /**
    * executes payment settlement setup for accounting
    * Returns transactions list
@@ -408,21 +462,21 @@ public class PaymentsApi {
    */
   public ResultListTransaction settlementSetup (Long id, SettlementData settlementData) throws ApiException, SecurityException {
     Object postBody = settlementData;
-    
+
 
     // create path and map variables
     String path = "/payments/{id}/settlement".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
+            .replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
-    
-    
+
+
     String[] contentTypes = {
-      
+
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -430,12 +484,12 @@ public class PaymentsApi {
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
       FormDataMultiPart mp = new FormDataMultiPart();
-      
+
       if(hasFields)
         postBody = mp;
     }
     else {
-      
+
     }
 
     try {
@@ -450,7 +504,58 @@ public class PaymentsApi {
       throw ex;
     }
   }
-  
+
+  /**
+   * wait for synchronous payment or timeout
+   * wait for synchronous payment or timeout
+   * @param id entity id
+   * @return Payment
+   */
+  public Payment syncPayment (Long id) throws ApiException, SecurityException {
+    Object postBody = null;
+
+
+    // create path and map variables
+    String path = "/payments/{id}/sync".replaceAll("\\{format\\}","json")
+            .replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      FormDataMultiPart mp = new FormDataMultiPart();
+
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+
+    }
+
+    try {
+      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Payment) ApiInvoker.deserialize(response, "", Payment.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      throw ex;
+    }
+  }
+
   /**
    * get transactions for the payment
    * Returns transactions list
@@ -459,21 +564,21 @@ public class PaymentsApi {
    */
   public ResultListTransaction getPaymentTransactions (Long id) throws ApiException, SecurityException {
     Object postBody = null;
-    
+
 
     // create path and map variables
     String path = "/payments/{id}/transactions".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
+            .replaceAll("\\{" + "id" + "\\}", apiInvoker.escapeString(id.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
-    
-    
+
+
     String[] contentTypes = {
-      
+
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -481,12 +586,12 @@ public class PaymentsApi {
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
       FormDataMultiPart mp = new FormDataMultiPart();
-      
+
       if(hasFields)
         postBody = mp;
     }
     else {
-      
+
     }
 
     try {
@@ -501,5 +606,6 @@ public class PaymentsApi {
       throw ex;
     }
   }
-  
+
 }
+
