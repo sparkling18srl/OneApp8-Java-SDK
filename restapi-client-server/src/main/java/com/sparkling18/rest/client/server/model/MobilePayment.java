@@ -16,6 +16,7 @@ public class MobilePayment  {
   
   private EntityInfo order = null;
   private String username = null;
+  private String externalId = null;
 
   
   /**
@@ -43,7 +44,15 @@ public class MobilePayment  {
     this.username = username;
   }
 
-  
+
+  /**
+   * The externalId of the user that will pay the transaction
+   **/
+  @ApiModelProperty(required = true, value = "The externalId of the user that will pay the transaction")
+  @JsonProperty("externalId")
+  public String getExternalId() {return externalId;}
+  public void setExternalId(String externalId) {this.externalId = externalId;}
+
 
   @Override
   public String toString()  {
